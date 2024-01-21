@@ -1,0 +1,32 @@
+
+/* products.html */
+.productsBtn-hero-container {
+    width: max-content;
+}
+
+@media screen and (max-width:768px) {
+    .productsBtn-hero-container {
+        width: auto;
+    }
+}
+
+.btn-free-trial {
+    background: #F7F7F7 !important;
+    border: 2px #007FFF solid !important;
+    color: #007FFF !important;
+}
+
+
+/* preorder_products */
+.pricing-card{
+        border-radius: 20px!important;
+}
+
+
+.slider-handle,.slider-tick{
+    background-image: linear-gradient(to bottom, #007FFF, #007FFF)!important;
+}
+
+.slider-selection{
+    background-image: linear-gradient(to bottom, #666666, #666666)!important;
+}
