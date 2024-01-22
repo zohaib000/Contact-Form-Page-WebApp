@@ -10,6 +10,69 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from PIL import Image
 import requests
 import base64
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
+
+def signup(request):
+    if request.method == "POST":
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        # Create a new user with additional information
+        user = User.objects.create_user(
+            username=username,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+        )
+
+        return redirect("login")
+    else:
+        if request.user.is_authenticated:
+            return redirect("home")
+        return render(request, "home/signup.html")
+
+    return render(request, "home/signup.html")
+
+
+def user_login(request):
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect("home")  # Replace 'dashboard' with your desired URL
+    else:
+        if request.user.is_authenticated:
+            return redirect("home")
+        return render(request, "home/login.html")
+
+    return render(request, "home/login.html")
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("login")
+
+
+def profile(request):
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            user_profile = User.objects.get(username=request.user)
+
+            context = {
+                "first_name": user_profile.first_name,
+                "last_name": user_profile.last_name,
+            }
+
+            return render(request, "home/profile.html", context)
+        else:
+            return redirect("login")
 
 
 class home(View):

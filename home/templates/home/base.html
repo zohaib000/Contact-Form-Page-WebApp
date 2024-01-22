@@ -41,7 +41,7 @@
         }
 
         .logoContainer{
-            margin-top: 122px!important;
+            margin-top: 100px!important;
         }
 
         #topPromotionHeader {
@@ -52,6 +52,11 @@
             background: #4154f1;
             color: white;
             border-radius: 15px;
+        }
+
+        #heroImage{
+            height: 550px!important;
+    width: auto;
         }
     </style>
 </head>
@@ -72,10 +77,15 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto active" href="{% url 'home' %}">Home</a></li>
                     <li><a class="nav-link scrollto" href="#about">About</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-                    <li><a class="getstarted scrollto" href="#">Signup</a></li>
+                    {% if request.user.is_authenticated %}
+                    <li><a class="getstarted scrollto" href="{% url 'profile' %}">Profile</a></li>
+                    <li><a class="getstarted scrollto" href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a class="nav-link scrollto" href="{% url 'signup' %}">Signup</a></li>
+                    {% endif %}
 
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
@@ -87,14 +97,14 @@
 
 
     <div class="container logoContainer">
-        <div class="row py-4">
-            <div class="col-4 mx-auto">
-                <img src="{% static 'assets/img/bLogo.png' %}" alt="">
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center" >
+                <img src="{% static 'assets/img/bLogo.png' %}" id="heroImage" alt="">
             </div>
         </div>
     </div>
 
-    <div class="block-content" id="blockContent">
+    <div class="block-content" id="blockContent" >
         {% block content %}
 
         {% endblock %}
@@ -103,7 +113,7 @@
 
 
     <!-- ======= Footer ======= -->
-    <footer id="footer" class="footer mt-5">
+    <footer id="footer" class="footer mt-5 fixed-bottom">
 
 
 

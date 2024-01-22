@@ -117,7 +117,10 @@ label{
     font-weight: bold;
     color:black;
       font-family: 'Poppins';
+      margin-bottom: 13px;
   }
+
+
 
 </style>
 
@@ -152,7 +155,7 @@ label{
     <div class="col-4">
       <div class="form-group">
         <label for="">Customer:</label>
-        <input type="text" name="customer" class="form-control form-control-lg" placeholder="Name , Location , Site #" />
+        <input type="text" name="customer" class="form-control form-control-lg" placeholder="Name,Location,Site #" />
       </div>
     </div>
   
@@ -160,7 +163,7 @@ label{
     <div class="col-4">
       <div class="form-group">
         <label for="">Job:</label>
-        <input type="text" name="job" class="form-control form-control-lg" placeholder="job"/>
+        <input type="text" name="job" class="form-control form-control-lg" placeholder="Job"/>
       </div>
     </div>
 
@@ -177,7 +180,7 @@ label{
   <div class="row form-row justify-content-between">
     <div class="col-4">
       <div class="form-group">
-        <label for="">In:</label>
+        <label for="">Clock In:</label>
         <input type="time" name="timeIn" class="form-control form-control-lg" placeholder="" />
       </div>
     </div>
@@ -185,14 +188,14 @@ label{
 
     <div class="col-4">
       <div class="form-group">
-        <label for="">Out:</label>
+        <label for="">Clock Out:</label>
         <input type="time" name="timeOut" class="form-control form-control-lg" placeholder="" onchange="calculateTimeDifference()"/>
       </div>
     </div>
 
     <div class="col-4">
       <div class="form-group">
-        <label for="">Total:</label>
+        <label for="">Total Hours On-Site:</label>
         <input type="text" name="totalTime" class="form-control form-control-lg" placeholder="" />
       </div>
     </div>
@@ -318,27 +321,33 @@ label{
 {% endblock %}
 
 {% block Script %}
+
+
 <!-- script for time calculation -->
 <script>
-    function calculateTimeDifference() {
-        // Get the time values from the input fields
-        const timeIn = document.querySelector("input[name=timeIn]").value;
-        const timeOut = document.querySelector("input[name=timeOut]").value;
+  function calculateTimeDifference() {
+    // Get the time values from the input fields
+    const timeIn = document.querySelector("input[name=timeIn]").value;
+    const timeOut = document.querySelector("input[name=timeOut]").value;
 
-        // Convert time values to Date objects
-        const dateIn = new Date(`2000-01-01T${timeIn}`);
-        const dateOut = new Date(`2000-01-01T${timeOut}`);
+    // Convert time values to Date objects
+    const dateIn = new Date(`2000-01-01T${timeIn}`);
+    const dateOut = new Date(`2000-01-01T${timeOut}`);
 
-        // Calculate the time difference in milliseconds
-        const timeDiff = dateOut - dateIn;
+    // Calculate the time difference in milliseconds
+    const timeDiff = dateOut - dateIn;
 
-        // Convert milliseconds to hours
-        const hoursDiff = timeDiff / (1000 * 60 * 60);
+    // Ensure the time difference is positive
+    const positiveTimeDiff = Math.abs(timeDiff);
 
-        // Update the time difference input field
-        document.querySelector("input[name=totalTime]").value = hoursDiff.toFixed(2);
-      }
+    // Convert milliseconds to hours
+    const hoursDiff = positiveTimeDiff / (1000 * 60 * 60);
+
+    // Update the time difference input field
+    document.querySelector("input[name=totalTime]").value = hoursDiff.toFixed(2);
+  }
 </script>
+
 
 
 <!-- script for multiple images uploading -->
