@@ -4,7 +4,10 @@
 {% load static %}
 
 <style>
-  
+  #blockContent {
+    padding-top: 20px!important;
+}
+
 
   /* for multiple images uploader */
 
@@ -130,18 +133,18 @@ label{
 </div>
 {% endif %}
 
-<form class="container-fluid px-5" id="UserForm" method="post" enctype="multipart/form-data">
+<form class="container-fluid px-5 mainForm" id="UserForm" method="post" enctype="multipart/form-data">
   {% csrf_token %}
   <!-- ? Row - 1 -->
   <div class="row mt-5 justify-content-between">
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Date:</label>
         <input type="date" name="date" class="form-control form-control-lg" />
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">WO/ID:</label>
         <input type="text" name="ID" class="form-control form-control-lg" placeholder="#9999"/>
@@ -152,7 +155,7 @@ label{
 
   <!-- ? Row - 2 -->
   <div class="row form-row justify-content-between">
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Customer:</label>
         <input type="text" name="customer" class="form-control form-control-lg" placeholder="Name,Location,Site #" />
@@ -160,14 +163,14 @@ label{
     </div>
   
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Job:</label>
         <input type="text" name="job" class="form-control form-control-lg" placeholder="Job"/>
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Contractor/Tech:</label>
         <input type="text" name="contractor" class="form-control form-control-lg" placeholder="Contractor/Tech:" />
@@ -178,7 +181,7 @@ label{
  
   <!-- ? Row - 3 -->
   <div class="row form-row justify-content-between">
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Clock In:</label>
         <input type="time" name="timeIn" class="form-control form-control-lg" placeholder="" />
@@ -186,14 +189,14 @@ label{
     </div>
   
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Clock Out:</label>
         <input type="time" name="timeOut" class="form-control form-control-lg" placeholder="" onchange="calculateTimeDifference()"/>
       </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-sm-4">
       <div class="form-group">
         <label for="">Total Hours On-Site:</label>
         <input type="text" name="totalTime" class="form-control form-control-lg" placeholder="" />
@@ -210,7 +213,7 @@ label{
         <label for="">Job Description:</label>
         <textarea name="jobDescription" class="form-control form-control-lg" id="jobDescription" cols="30" rows="10" placeholder="Enter Your Job Description here..."></textarea>
         <div class="d-flex justify-content-end py-3">
-        <span class="text-end">From 1 to 10,000 charactors</span>
+        <span class="text-end">From 1 to 10,000 characters</span>
         </div>
       </div>
     </div>
@@ -238,7 +241,7 @@ label{
         <textarea name="whatWasCompleted" class="form-control form-control-lg" id="whatWasCompleted" cols="30" rows="10"
           placeholder="What was Completed"></textarea>
         <div class="d-flex justify-content-end py-3">
-          <span class="text-end">From 1 to 10,000 charactors</span>
+          <span class="text-end">From 1 to 10,000 characters</span>
         </div>
       </div>
     </div>
@@ -250,10 +253,9 @@ label{
     <div class="col-12">
       <div class="form-group">
         <label for="">Still Needs Completed:</label>
-        <textarea name="stillNeedsCompleted" class="form-control form-control-lg" id="stillNeedsCompleted" cols="30" rows="10"
-          placeholder="Still Needs Completed"></textarea>
+        <textarea name="stillNeedsCompleted" class="form-control form-control-lg" id="stillNeedsCompleted" cols="30" rows="10" placeholder="Still Needs Completed"></textarea>
         <div class="d-flex justify-content-end py-3">
-          <span class="text-end">From 1 to 10,000 charactors</span>
+          <span class="text-end">From 1 to 10,000 characters</span>
         </div>
       </div>
     </div>
@@ -267,7 +269,7 @@ label{
         <textarea name="notes" class="form-control form-control-lg" id="notes" cols="30" rows="10"
           placeholder="Issues/Notes on Site"></textarea>
         <div class="d-flex justify-content-end py-3">
-          <span class="text-end">From 1 to 10,000 charactors</span>
+          <span class="text-end">From 1 to 10,000 characters</span>
         </div>
       </div>
     </div>
@@ -303,7 +305,7 @@ label{
 
   <!-- ? Final Row Submit Button -->
   <div class="row mt-5 py-4">
-    <div class="col-4 mx-auto d-flex justify-content-center">
+    <div class="col-sm-4 mx-auto d-flex justify-content-center">
       <input type="submit" class="btn btn-primary btn-lg btn-get-started fs-1 p-3" value="Submit Details">
     </div>
   </div>
